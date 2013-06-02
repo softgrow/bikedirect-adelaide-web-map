@@ -1,20 +1,42 @@
 <html>
     <head>
         <title></title>
-        <script src="http://openlayers.org/api/OpenLayers.js"></script>
+        <script src="http://openlayers.org/api/OpenLayers.mobile.js"></script>
         <script type="text/javascript">
             var lat=-34.8733;
             var lon=138.6528;
             var zoom=12;
             var map;
+			// Get rid of address bar on iphone/ipod
+            var fixSize = function() {
+            window.scrollTo(0, 0);
+            document.body.style.height = '100%';
+            if (!(/(iphone|ipod)/.test(navigator.userAgent.toLowerCase()))) {
+              if (document.body.parentNode) {
+                document.body.parentNode.style.height = '100%';
+             }
+            }
+            };
+            setTimeout(fixSize, 700);
+            setTimeout(fixSize, 1500);
+
+            // allow testing of specific renderers via "?renderer=Canvas", etc
+            var renderer = OpenLayers.Util.getParameters(window.location.href).renderer;
+            renderer = (renderer) ? [renderer] : OpenLayers.Layer.Vector.prototype.renderers;
+
  
             function init(){
                 map = new OpenLayers.Map ("map", {
                 controls:[
-                    new OpenLayers.Control.Navigation(),
-                    new OpenLayers.Control.PanZoomBar(),
-                    new OpenLayers.Control.LayerSwitcher(),
-                    new OpenLayers.Control.Attribution()],
+                  new OpenLayers.Control.Attribution(),
+                  new OpenLayers.Control.TouchNavigation({
+                   dragPanOptions: {
+                     enableKinetic: true
+                       }
+                  }),
+                        new OpenLayers.Control.Zoom()
+
+					],
                     maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
                     maxResolution: 156543.0399,
                     numZoomLevels: 19,
