@@ -10,6 +10,7 @@ Techniques used
 * Using JOSM select and delete all lines which are "Main Road" to remove
 * Using JOSM simplify the ways to 3m accuracy (default)
 * Save as geoJSON which renders faster in OpenLayers
+* Remove all attributes and merge onroad and offroad layers to reduce file size
 * OpenLayers is used to display the map
 
 Issues

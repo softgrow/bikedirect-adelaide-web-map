@@ -34,17 +34,6 @@
                 var layer = new OpenLayers.Layer.Vector("Polygon", {
                     strategies: [new OpenLayers.Strategy.Fixed()],
                     protocol: new OpenLayers.Protocol.HTTP({
-                        url: "offroad.geojson",   //<-- relative or absolute URL to your .osm file
-                        format: new OpenLayers.Format.GeoJSON()
-                    }), style: {strokeColor: "green", strokeWidth: 3, strokeOpacity: 0.5},
-                    projection: new OpenLayers.Projection("EPSG:4326")
-                });
- 
-                map.addLayers([layer]);
-				
-				layer = new OpenLayers.Layer.Vector("Polygon", {
-                    strategies: [new OpenLayers.Strategy.Fixed()],
-                    protocol: new OpenLayers.Protocol.HTTP({
                         url: "onroad.geojson",   //<-- relative or absolute URL to your .osm file
                         format: new OpenLayers.Format.GeoJSON()
                     }), style: {strokeColor: "green", strokeWidth: 3, strokeOpacity: 0.5},
@@ -52,7 +41,6 @@
                 });
  
                 map.addLayers([layer]);
- 
             }
         </script>
     </head>
